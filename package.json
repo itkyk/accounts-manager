@@ -1,17 +1,21 @@
 {
   "name": "@itkyk/account-manager",
-  "version": "0.0.25",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "tsc -w",
     "build": "tsc",
-    "test": "node ./bin/index.js -d"
+    "test": "node ./bin/index.js"
   },
   "bin": {
     "account": "./bin/index.js"
   },
-  "keywords": ["password", "manager", "CLI"],
+  "keywords": [
+    "password",
+    "manager",
+    "CLI"
+  ],
   "homepage": "https://github.com/itkyk/accounts-manager#readme",
   "repository": {
     "url": "https://github.com/itkyk/accounts-manager"

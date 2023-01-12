@@ -1,12 +1,8 @@
-module.exports = async() => {
-  const path = require("path");
-  const fs = require("fs");
-  const inquirer = require("inquirer")
-  const userHome = process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"];
-  let jsonPath = path.join(userHome, "/.itkyk_accounts.json")
-  if (!fs.existsSync(jsonPath)) {
-    fs.writeFileSync(jsonPath, "{}", "utf-8");
-  }
+import inquirer from "inquirer";
+import {jsonPath, jsonCheck, writeJson} from "./util";
+
+const write= async() => {
+  jsonCheck();
   const json = require(jsonPath);
   const result = await inquirer.prompt([
     {
@@ -37,7 +33,9 @@ module.exports = async() => {
     }
   })
   json[keyName]["deleted"] = false
-  fs.writeFileSync(jsonPath, JSON.stringify(json, null, 2), "utf-8")
+  writeJson(jsonPath, json);
   console.log("----- ADDED DATA -----");
   console.table({[keyName]: json[keyName]})
 }
+
+export default write;

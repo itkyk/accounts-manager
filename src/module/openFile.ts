@@ -1,16 +1,15 @@
-module.exports = () => {
-  const path = require("path");
-  const fs = require("fs");
-  const {exec} = require("child_process");
-  const userHome = process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"];
-  let dataPath = path.join(userHome, "/.itkyk_accounts.json")
-  if (!fs.existsSync(dataPath)) {
-    fs.writeFileSync(dataPath, "{}", "utf-8");
-  }
-  console.log(`----- OPEN DIR (${dataPath}) -----`)
+import {exec} from "child_process";
+import {jsonPath, jsonCheck} from "./util";
+import fs from "fs";
+
+const openFile = () => {
+  jsonCheck(false);
+  console.log(`----- OPEN DIR (${jsonPath}) -----`)
   if (process.platform === "win32") {
-    exec(`start ${dataPath}`)
+    exec(`start ${jsonPath}`)
   } else {
-    exec(`open ${dataPath}`)
+    exec(`open ${jsonPath}`)
   }
 }
+
+export default openFile;
